@@ -1,0 +1,49 @@
+* {
+	border-radius: 2px;
+}
+window {
+	background-color: rgba(60, 60, 60, 0.1);
+	opacity: 0.95;
+	font-family: "Iosevka Nerd Font Mono", sans-serif;
+	/*border-image: linear-gradient(45deg, red, purple) 1;
+	*/
+}
+
+#text {
+	color: white;
+	font-size: 1em;
+	font-weight: 500;
+	font-size: 1.15em;	
+}
+
+#text > textarea:focus, input:focus {
+	outline: none;
+}
+
+#input {
+	background-color: rgba(60, 60, 60, 0.1);
+	border: none;
+	padding: 0.75em;
+	color: white;
+	font-weight: 700;
+	font-size: 1.25em;
+}
+
+#entry {
+	padding: 0 0.75em 0 0;
+	color: #c2eeec;
+}
+
+#entry:selected {
+	/*color:red
+*
+* */
+	background: linear-gradient(45deg, rgba(69, 208, 223, 0.5), rgba(60, 60, 60, 0.1));
+	color: #9ed3d4;
+	font-size: 1.17em;
+}
+
+
+image {
+	padding: 0.50em 0.75em;
+}

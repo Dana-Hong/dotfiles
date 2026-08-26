@@ -1,0 +1,20 @@
+[wofi]
+width = 20%
+height = 20%
+border = 5
+padding = 10
+radius = 10
+prompt = Christ is King
+normal_window = true
+no_actions = true
+insensitive = true
+image_size = 36 
+
+[search]
+allow_images = true
+key_up= k
+key_down = j
+
+[list]
+show-icons = true
+
