@@ -40,7 +40,24 @@ function set_win_title(){
     echo -ne "\033]0; $(basename "$PWD") \007"
 }
 starship_precmd_user_func="set_win_title"
-fastfetch
+
+function show_fastfetch() {
+    if [[ -f "$HOME/.config/fastfetch/matugen.jsonc" ]]; then
+        fastfetch --config "$HOME/.config/fastfetch/matugen.jsonc"
+    else
+        fastfetch
+    fi
+}
+
+show_fastfetch
+
+# The wallpaper picker sends SIGUSR1 after Matugen finishes. Redraw only
+# the current Starship prompt; existing Fastfetch output remains historical.
+function TRAPUSR1() {
+    if [[ -o zle ]]; then
+        zle reset-prompt
+    fi
+}
 
 export PATH=$PATH:$HOME/go/bin
 export NVM_DIR="$HOME/nvim"
@@ -55,6 +72,18 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
+
+# Keep every shell pointed at one stable runtime path so Matugen color changes
+# are picked up on the next prompt without restarting the terminal.
+STARSHIP_RUNTIME_CONFIG="$HOME/.cache/matugen/starship.toml"
+
+if [[ ! -f "$STARSHIP_RUNTIME_CONFIG" ]]; then
+    mkdir -p "${STARSHIP_RUNTIME_CONFIG:h}"
+    cp "$HOME/.config/starship.toml" "$STARSHIP_RUNTIME_CONFIG"
+fi
+
+export STARSHIP_CONFIG="$STARSHIP_RUNTIME_CONFIG"
+unset STARSHIP_RUNTIME_CONFIG
 
 eval "$(starship init zsh)"
 

@@ -9,3 +9,11 @@ post_hook = "pkill -SIGUSR2 waybar || true"
 input_path = "~/.config/matugen/templates/kitty-colors.conf.tmpl"
 output_path = "~/.config/kitty/colors.conf"
 post_hook = "pkill -SIGUSR1 kitty || true"
+
+[templates.starship]
+input_path = "~/.config/matugen/templates/starship.toml.tmpl"
+output_path = "~/.cache/matugen/starship.toml"
+
+[templates.fastfetch]
+input_path = "~/.config/matugen/templates/fastfetch.jsonc.tmpl"
+output_path = "~/.config/fastfetch/matugen.jsonc"

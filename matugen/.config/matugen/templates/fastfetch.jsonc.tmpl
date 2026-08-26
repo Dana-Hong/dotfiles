@@ -1,0 +1,132 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "kitty-icat",
+    "source": "/home/dana/.dotfiles/fastfetch/.config/fastfetch/Digital_Blue_Flowers_PNG - 1500x1500.png",
+    "height": 30,
+    "width": 30,
+    "padding": {
+      "left": 2,
+      "right": 3,
+      "bottom": 3,
+    },
+  },
+  "modules": [
+    "title",
+    {
+      "type": "custom",
+      "format": "\u001b[36m┌────────────────────────────────┐",
+    },
+    {
+      "type": "os",
+      "key": "    OS",
+      "keyColor": "{{colors.primary.dark.hex}}",
+    },
+    {
+      "type": "command",
+      "key": "  󱦟  OS Age ",
+      "keyColor": "{{colors.secondary.dark.hex}}",
+      "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days",
+    },
+    {
+      "type": "kernel",
+      "key": "    Kernel",
+      "keyColor": "{{colors.tertiary.dark.hex}}",
+    },
+    {
+      "type": "uptime",
+      "key": "    Uptime",
+      "keyColor": "{{colors.primary.dark.hex}}",
+    },
+    {
+      "type": "packages",
+      "key": "  󰏗  Packages",
+      "keyColor": "{{colors.secondary.dark.hex}}",
+    },
+    {
+      "type": "shell",
+      "key": "    Shell",
+      "keyColor": "{{colors.tertiary.dark.hex}}",
+    },
+    {
+      "type": "custom",
+      "format": "\u001b[36m└────────────────────────────────┘",
+    },
+    {
+      "type": "custom",
+      "format": "\u001b[36m┌────────────────────────────────┐",
+    },
+    {
+      "type": "wm",
+      "key": "    WM",
+      "keyColor": "{{colors.primary.dark.hex}}",
+    },
+    {
+      "type": "wmtheme",
+      "keyColor": "{{colors.secondary.dark.hex}}",
+    },
+    {
+      "type": "theme",
+      "keyColor": "{{colors.tertiary.dark.hex}}",
+    },
+    {
+      "type": "icons",
+      "keyColor": "{{colors.primary.dark.hex}}",
+    },
+    {
+      "type": "font",
+      "keyColor": "{{colors.secondary.dark.hex}}",
+    },
+    {
+      "type": "terminal",
+      "key": "  🖥️ Terminal",
+      "keyColor": "{{colors.tertiary.dark.hex}}",
+    },
+    {
+      "type": "terminalfont",
+      "key": "  ⌨  Terminal font",
+      "keyColor": "{{colors.primary.dark.hex}}",
+    },
+    {
+      "type": "cpu",
+      "format": "{1}",
+      "key": "    CPU",
+      "keyColor": "{{colors.secondary.dark.hex}}",
+    },
+    {
+      "type": "gpu",
+      "format": "{2}",
+      "key": "    GPU",
+      "keyColor": "{{colors.tertiary.dark.hex}}",
+    },
+    {
+      "type": "memory",
+      "key": "    Memory",
+      "keyColor": "{{colors.primary.dark.hex}}",
+    },
+    {
+      "type": "disk",
+      "key": "  ⛃  Disk",
+      "keyColor": "{{colors.secondary.dark.hex}}",
+    },
+    {
+      "type": "localip",
+      "key": "  🌐 Local IP",
+      "keyColor": "{{colors.tertiary.dark.hex}}",
+    },
+    {
+      "type": "battery",
+      "keyColor": "{{colors.primary.dark.hex}}",
+    },
+    {
+      "type": "poweradapter",
+      "keyColor": "{{colors.secondary.dark.hex}}",
+    },
+    {
+      "type": "custom",
+      "format": "\u001b[36m└────────────────────────────────┘",
+    },
+    "break",
+    "colors",
+  ],
+}
