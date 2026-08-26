@@ -1,0 +1,13 @@
+[user]
+	email = 77565946+Dana-Hong@users.noreply.github.com
+	name = Dana-Hong
+[credential "https://github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main
