@@ -10,10 +10,10 @@ PanelWindow {
     // ---- Settings ----
     property int speed: 5000
     property int animDuration: 1000
-    property real zoomScale: 0.8
-    property real edgeScale: 0.3
+    property real zoomScale: 0.9
+    property real edgeScale: 0.5
     property real skewFactor: 0
-    property int baseSpacing: 10
+    property int baseSpacing: 2
     property int startPosition: 20
 
     implicitHeight: 500
@@ -65,9 +65,18 @@ PanelWindow {
 
         property int selectedIndex: 0 //DESKTOP
         // property int selectedIndex: main.startPosition
-        property real tileWidth: width / configs.number_of_pictures - 10
+        property real tileWidth: width / configs.number_of_pictures - spacing
         property real viewportCenterX: width / 2
         property bool ready: false
+        property bool hoverSelectionEnabled: true
+
+        Timer {
+            id: hoverResumeTimer
+
+            interval: main.animDuration + 100
+            repeat: false
+            onTriggered: list.hoverSelectionEnabled = true
+        }
 
         // Extend the scrollable area on both ends so the first/last
         // wallpaper can be centered in the viewport.
@@ -122,6 +131,8 @@ PanelWindow {
         }
 
         function moveSelection(delta, speedMultiplier) {
+            hoverSelectionEnabled = false;
+            hoverResumeTimer.restart();
             anim.v = main.speed * speedMultiplier;
             selectedIndex = clampIndex(selectedIndex + delta);
             ensureVisibleAnimated(selectedIndex);
@@ -182,7 +193,7 @@ PanelWindow {
                     id: img
 
                     anchors.fill: parent
-                    opacity: 0.8
+                    opacity: 1.0
                     fillMode: Image.PreserveAspectCrop
                     asynchronous: true
                     cache: false
@@ -238,9 +249,15 @@ PanelWindow {
                 anchors.fill: parent
                 hoverEnabled: true
 
-                onEntered: list.selectedIndex = index
+                onEntered: {
+                    if (list.hoverSelectionEnabled)
+                        list.selectedIndex = index;
+                }
 
-                onClicked: list.activateCurrent()
+                onClicked: {
+                    list.selectedIndex = index;
+                    list.activateCurrent();
+                }
 
                 onWheel: function (wheel) {
                     list.flick(-wheel.angleDelta.y * 8, 0);
@@ -251,12 +268,23 @@ PanelWindow {
 
         Keys.onPressed: function (event) {
             switch (event.key) {
+            case Qt.Key_H:
+            case Qt.Key_K:
+            case Qt.Key_Left:
+                moveSelection(-1, 1);
+                break;
+            case Qt.Key_J:
+            case Qt.Key_L:
+            case Qt.Key_Right:
+                moveSelection(1, 1);
+                break;
+            case Qt.Key_Return:
+            case Qt.Key_Enter:
             case Qt.Key_Space:
                 activateCurrent();
                 break;
+            case Qt.Key_Q:
             case Qt.Key_W:
-                Qt.quit();
-                break;
             case Qt.Key_Escape:
                 Qt.quit();
                 break;
