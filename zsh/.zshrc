@@ -8,6 +8,11 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias zed='zeditor'
+alias la='eza -a'
+alias ll='eza -la'
+alias lt='eza --tree'
+alias lta='eza --tree -a'
 
 # Prompt
 #PROMPT='[%n@%m %1~]$ '
@@ -56,8 +61,3 @@ eval "$(starship init zsh)"
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
-
-alias zed='zeditor'
-alias la='eza -a'
-alias ll='eza -la'
-alias lt='eza --tree'
