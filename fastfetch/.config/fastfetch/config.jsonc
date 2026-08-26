@@ -2,66 +2,66 @@
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
   "logo": {
     "type": "kitty-icat",
-    "source": "/home/dana/wallpapers/Digital_Blue_Flowers_PNG - 1500x1500.png",
+    "source": "/home/dana/.dotfiles/fastfetch/.config/fastfetch/Digital_Blue_Flowers_PNG - 1500x1500.png",
     "height": 30,
     "width": 30,
     "padding": {
       "left": 2,
-      "right": 3, 
-      "bottom": 3
-    }
+      "right": 3,
+      "bottom": 3,
+    },
   },
   "modules": [
     "title",
     {
       "type": "custom",
-      "format": "\u001b[36m┌────────────────────────────────┐"
+      "format": "\u001b[36m┌────────────────────────────────┐",
     },
     {
       "type": "os",
       "key": "    OS",
-      "keyColor": "38;5;81"  // Cyan
+      "keyColor": "38;5;81", // Cyan
     },
     {
       "type": "command",
       "key": "  󱦟  OS Age ",
       "keyColor": "38;5;81",
-      "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days"
+      "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days",
     },
-//"host",
+    //"host",
     {
       "type": "kernel",
       "key": "    Kernel",
-      "keyColor": "97"  // White
+      "keyColor": "97", // White
     },
     {
-          "type": "uptime",
-          "key": "    Uptime",
-          "keyColor": "34",
-    },   
+      "type": "uptime",
+      "key": "    Uptime",
+      "keyColor": "34",
+    },
     {
       "type": "packages",
       "key": "  󰏗  Packages",
-      "keyColor": "34"  // Keeping the same
+      "keyColor": "34", // Keeping the same
     },
     {
       "type": "shell",
       "key": "    Shell",
-      "keyColor": "90"  // Grey
+      "keyColor": "90", // Grey
     },
     //"display",
     {
       "type": "custom",
-      "format": "\u001b[36m└────────────────────────────────┘"
+      "format": "\u001b[36m└────────────────────────────────┘",
     },
     {
       "type": "custom",
-      "format": "\u001b[36m┌────────────────────────────────┐"
+      "format": "\u001b[36m┌────────────────────────────────┐",
     },
     {
       "type": "wm",
       "key": "    wm",
-      "keyColor": "38;5;81"  // White
+      "keyColor": "38;5;81", // White
     },
     "wmtheme",
     "theme",
@@ -71,49 +71,49 @@
     {
       "type": "terminal",
       "key": "  🖥️ terminal",
-      "keyColor": "38;5;81"  // White
+      "keyColor": "38;5;81", // White
     },
     {
       "type": "terminalfont",
       "key": "  ⌨  terminalfont",
-      "keyColor": "38;5;81"  // White
+      "keyColor": "38;5;81", // White
     },
     {
       "type": "cpu",
       "format": "{1}",
       "key": "    CPU",
-      "keyColor": "38;5;118"  // Bright Green
+      "keyColor": "38;5;118", // Bright Green
     },
     {
       "type": "gpu",
       "format": "{2}",
       "key": "    GPU",
-      "keyColor": "38;5;220"  // Yellow
+      "keyColor": "38;5;220", // Yellow
     },
     {
       "type": "memory",
       "key": "    Memory",
-      "keyColor": "38;5;99"  // Pinkish Purple
+      "keyColor": "38;5;99", // Pinkish Purple
     },
     // "swap",
     {
       "type": "disk",
       "key": "  ⛃  Disk",
-      "keyColor": "38;5;99"  // Pinkish Purple
+      "keyColor": "38;5;99", // Pinkish Purple
     },
-{
+    {
       "type": "localip",
       "key": "  🌐 Local IP",
-      "keyColor": "38;5;99"  // Pinkish Purple
+      "keyColor": "38;5;99", // Pinkish Purple
     },
     "battery",
     "poweradapter",
     // "locale",
     {
       "type": "custom",
-      "format": "\u001b[36m└────────────────────────────────┘"
+      "format": "\u001b[36m└────────────────────────────────┘",
     },
     "break",
-    "colors"
-  ]
+    "colors",
+  ],
 }
