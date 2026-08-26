@@ -13,6 +13,7 @@ label {
     size = 30, 30
     color = {{colors.on_surface.dark.rgba | set_alpha: 0.85}} # no fill
     text = cmd[update:1000] echo "$(date +"%A, %B %d")"
+    zindex = 3
     border_color = {{colors.primary.dark.rgba}}
     font_size = 25
     font_family = Iosevka Nerd Font
@@ -28,6 +29,7 @@ label {
     size = 30, 30
     color = {{colors.on_surface.dark.rgba | set_alpha: 0.85}} # no fill
     text = $TIME12
+    zindex = 3
     border_color = {{colors.primary.dark.rgba}}
     font_size = 60
     font_family = Iosevka Nerd Font
@@ -40,7 +42,7 @@ label {
 image {
     monitor = DP-1
     size = 450
-    path = /home/dana/.cache/matugen/lockscreen-wallpaper
+    path = /home/dana/.config/fastfetch/Digital_Blue_Flowers_PNG - 1500x1500.png
     zindex = 2
     border_color = rgba(0, 0, 0, 0.0)
     shadow_passes = 1
