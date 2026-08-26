@@ -16,6 +16,8 @@ hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(programs.browser))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(programs.text_editor))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(programs.file_manager))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(programs.menu))
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(programs.menu))
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("qs -c hyprquickpaper"))
 
 --- Misc ---
 hl.bind(mainMod .. " + X", hl.dsp.exec_cmd(programs.screen_lock))
