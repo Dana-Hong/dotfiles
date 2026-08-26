@@ -25,12 +25,7 @@ PanelWindow {
     WlrLayershell.layer: WlrLayer.Overlay
     WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
 
-    Component.onCompleted:
-        Quickshell.execDetached([
-            "bash",
-            Quickshell.shellPath("cache.sh"),
-            Quickshell.shellDir
-        ])
+    Component.onCompleted: Quickshell.execDetached(["bash", Quickshell.shellPath("cache.sh"), Quickshell.shellDir])
 
     FileView {
         path: Quickshell.shellPath("config.json")
@@ -68,7 +63,8 @@ PanelWindow {
         cacheBuffer: 400
         boundsBehavior: Flickable.StopAtBounds
 
-        property int selectedIndex: main.startPosition
+        property int selectedIndex: 0 //DESKTOP
+        // property int selectedIndex: main.startPosition
         property real tileWidth: width / configs.number_of_pictures - 10
         property real viewportCenterX: width / 2
         property bool ready: false
@@ -78,40 +74,57 @@ PanelWindow {
         leftMargin: Math.max(0, viewportCenterX - tileWidth / 2)
         rightMargin: leftMargin
 
-        onCountChanged: {
-            if (!ready && count > 0) {
-                selectedIndex = clampIndex(main.startPosition)
-                ensureVisibleAnimated(selectedIndex)
-                ready = true
+        Component.onCompleted: {
+            if (folderModel.status === FolderListModel.Ready)
+                Qt.callLater(list.initializePosition);
+        }
+
+        Connections {
+            target: folderModel
+
+            function onStatusChanged() {
+                if (folderModel.status === FolderListModel.Ready)
+                    Qt.callLater(list.initializePosition);
             }
         }
 
+        onCountChanged: {
+            if (folderModel.status === FolderListModel.Ready)
+                Qt.callLater(initializePosition);
+        }
+
+        function initializePosition() {
+            if (list.ready || list.count === 0)
+                return;
+
+            list.forceLayout();
+            list.selectedIndex = Math.floor(list.count / 2);
+            list.positionViewAtIndex(list.selectedIndex, ListView.Center);
+            list.ready = true;
+        }
+
         function clampIndex(i) {
-            return Math.max(0, Math.min(i, count - 1))
+            return Math.max(0, Math.min(i, count - 1));
         }
 
         function activateCurrent() {
-            Quickshell.execDetached([
-                "bash",
-                Quickshell.shellPath("commands.sh"),
-                folderModel.get(selectedIndex, "filePath")
-            ])
+            Quickshell.execDetached(["bash", Quickshell.shellPath("commands.sh"), folderModel.get(selectedIndex, "filePath")]);
 
-            Qt.quit()
+            Qt.quit();
         }
 
         function ensureVisibleAnimated(i) {
-            const step = tileWidth + spacing
-            const itemStart = i * step
+            const step = tileWidth + spacing;
+            const itemStart = i * step;
 
             // Always center the selected tile.
-            contentX = itemStart + tileWidth / 2 - viewportCenterX
+            contentX = itemStart + tileWidth / 2 - viewportCenterX;
         }
 
         function moveSelection(delta, speedMultiplier) {
-            anim.v = main.speed * speedMultiplier
-            selectedIndex = clampIndex(selectedIndex + delta)
-            ensureVisibleAnimated(selectedIndex)
+            anim.v = main.speed * speedMultiplier;
+            selectedIndex = clampIndex(selectedIndex + delta);
+            ensureVisibleAnimated(selectedIndex);
         }
 
         Behavior on contentX {
@@ -130,32 +143,27 @@ PanelWindow {
             height: 500
             property bool active: index === list.selectedIndex
 
-            // Base slot width, independent of this item's own width.
+            // Keep layout slots fixed so ListView can position items reliably.
             readonly property real baseWidth: list.tileWidth
 
             // Dock-style magnification based on on-screen position.
             property real scaleFactor: {
-                const centerX = x - list.contentX + baseWidth / 2
-                const frac = Math.min(
-                    1,
-                    Math.abs(centerX - list.viewportCenterX) / list.viewportCenterX
-                )
+                const centerX = x - list.contentX + baseWidth / 2;
+                const frac = Math.min(1, Math.abs(centerX - list.viewportCenterX) / list.viewportCenterX);
 
-                const t = 1 - frac * frac * (3 - 2 * frac)
+                const t = 1 - frac * frac * (3 - 2 * frac);
 
-                return main.edgeScale +
-                       (main.zoomScale - main.edgeScale) * t
+                return main.edgeScale + (main.zoomScale - main.edgeScale) * t;
             }
 
-            width: baseWidth * scaleFactor
+            width: baseWidth
 
             Item {
                 id: content
 
                 anchors.centerIn: parent
-                width: parent.width
-                height: delegateItem.height *
-                        Math.min(1, delegateItem.scaleFactor)
+                width: parent.width * delegateItem.scaleFactor
+                height: delegateItem.height * Math.min(1, delegateItem.scaleFactor)
 
                 Text {
                     id: alt
@@ -180,16 +188,12 @@ PanelWindow {
                     cache: false
                     smooth: true
 
-                    source: "file://" +
-                            configs.cache_path +
-                            fileName
+                    source: "file://" + configs.cache_path + fileName
 
                     // Decode once at max zoomed size.
-                    sourceSize.width:
-                        delegateItem.baseWidth * main.zoomScale
+                    sourceSize.width: delegateItem.baseWidth * main.zoomScale
 
-                    sourceSize.height:
-                        delegateItem.height
+                    sourceSize.height: delegateItem.height
 
                     transform: Shear {
                         xFactor: main.skewFactor
@@ -202,16 +206,16 @@ PanelWindow {
                         repeat: false
 
                         onTriggered: {
-                            const s = img.source
-                            img.source = ""
-                            img.source = s
+                            const s = img.source;
+                            img.source = "";
+                            img.source = s;
                         }
                     }
 
                     onStatusChanged: {
                         if (status === Image.Error) {
-                            alt.text = "Caching"
-                            retryTimer.start()
+                            alt.text = "Caching";
+                            retryTimer.start();
                         }
                     }
                 }
@@ -234,34 +238,32 @@ PanelWindow {
                 anchors.fill: parent
                 hoverEnabled: true
 
-                onEntered:
-                    list.selectedIndex = index
+                onEntered: list.selectedIndex = index
 
-                onClicked:
-                    list.activateCurrent()
+                onClicked: list.activateCurrent()
 
-                onWheel: function(wheel) {
-                    list.flick(-wheel.angleDelta.y * 8, 0)
-                    wheel.accepted = true
+                onWheel: function (wheel) {
+                    list.flick(-wheel.angleDelta.y * 8, 0);
+                    wheel.accepted = true;
                 }
             }
         }
 
-        Keys.onPressed: function(event) {
+        Keys.onPressed: function (event) {
             switch (event.key) {
             case Qt.Key_Space:
-                activateCurrent()
-                break
+                activateCurrent();
+                break;
             case Qt.Key_W:
-                Qt.quit()
-                break
+                Qt.quit();
+                break;
             case Qt.Key_Escape:
-                Qt.quit()
-                break
+                Qt.quit();
+                break;
             default:
-                return
+                return;
             }
-            event.accepted = true
+            event.accepted = true;
         }
     }
 }
