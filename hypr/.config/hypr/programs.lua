@@ -2,10 +2,10 @@ local programs = {
     terminal = "kitty",
     browser = "brave",
     -- alt: browser = "zen-browser"
-    menu = "wofi --show drun",
+    menu = "~/.config/wofi/launch.sh",
     file_manager = "dolphin",
     text_editor = "zeditor",
-    screen_lock = "hyprlock",
+    screen_lock = "~/.config/hypr/launch-hyprlock.sh",
 }
 
 return programs

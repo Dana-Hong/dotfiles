@@ -1,0 +1,43 @@
+* {
+	border-radius: 2px;
+}
+
+window {
+	background-color: {{colors.surface_container.dark.rgba | set_alpha: 0.75}};
+	opacity: 0.95;
+	font-family: "Iosevka Nerd Font Mono", sans-serif;
+}
+
+#text {
+	color: {{colors.on_surface.dark.hex}};
+	font-size: 1.15em;
+	font-weight: 500;
+}
+
+#text > textarea:focus, input:focus {
+	outline: none;
+}
+
+#input {
+	background-color: {{colors.surface_container.dark.rgba | set_alpha: 0.75}};
+	border: none;
+	padding: 0.75em;
+	color: {{colors.on_surface.dark.hex}};
+	font-weight: 700;
+	font-size: 1.25em;
+}
+
+#entry {
+	padding: 0 0.75em 0 0;
+	color: {{colors.on_surface.dark.hex}};
+}
+
+#entry:selected {
+	background: linear-gradient(45deg, {{colors.primary_container.dark.rgba | set_alpha: 0.8}}, {{colors.surface_container.dark.rgba | set_alpha: 0.75}});
+	color: {{colors.on_primary_container.dark.hex}};
+	font-size: 1.17em;
+}
+
+image {
+	padding: 0.50em 0.75em;
+}

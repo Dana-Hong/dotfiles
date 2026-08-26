@@ -17,3 +17,21 @@ output_path = "~/.cache/matugen/starship.toml"
 [templates.fastfetch]
 input_path = "~/.config/matugen/templates/fastfetch.jsonc.tmpl"
 output_path = "~/.config/fastfetch/matugen.jsonc"
+
+[templates.wofi]
+input_path = "~/.config/matugen/templates/wofi-style.css.tmpl"
+output_path = "~/.config/wofi/matugen.css"
+
+[templates.hyprlock]
+input_path = "~/.config/matugen/templates/hyprlock.conf.tmpl"
+output_path = "~/.config/hypr/hyprlock-matugen.conf"
+
+[templates.hyprland]
+input_path = "~/.config/matugen/templates/hypr-colors.lua.tmpl"
+output_path = "~/.config/hypr/matugen-colors.lua"
+post_hook = "hyprctl reload || true"
+
+[templates.swaync]
+input_path = "~/.config/matugen/templates/swaync-style.css.tmpl"
+output_path = "~/.config/swaync/matugen.css"
+post_hook = "swaync-client --reload-css --skip-wait || true"

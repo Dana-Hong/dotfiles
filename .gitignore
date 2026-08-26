@@ -10,6 +10,9 @@
 /waybar/.config/waybar/matugen.css
 /kitty/.config/kitty/colors.conf
 /fastfetch/.config/fastfetch/matugen.jsonc
+/wofi/.config/wofi/matugen.css
+/hypr/.config/hypr/hyprlock-matugen.conf
+/hypr/.config/hypr/matugen-colors.lua
 
 # Local pre-Matugen fallback copies
 /waybar/.config/waybar/*.backup

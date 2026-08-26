@@ -21,6 +21,7 @@ hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("qs -c hyprquickpaper"))
 
 --- Misc ---
 hl.bind(mainMod .. " + X", hl.dsp.exec_cmd(programs.screen_lock))
+hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd("swaync-client --toggle-panel --skip-wait"))
 
 --- Screenshots ---
 hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("hyprshot -m region"))

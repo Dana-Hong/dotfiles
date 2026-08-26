@@ -8,6 +8,8 @@ mkdir -p "$HOME/.cache/matugen"
 
 # Regenerate application themes only after the selected wallpaper is applied.
 if awww img "$wallpaper" -t random --transition-duration 1; then
+    ln -sfn "$wallpaper" "$HOME/.cache/matugen/lockscreen-wallpaper"
+
     if matugen \
         --prefer lightness \
         --type scheme-vibrant \

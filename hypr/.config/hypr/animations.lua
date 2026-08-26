@@ -1,3 +1,14 @@
+local fallback_colors = {
+    active_border = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 },
+    inactive_border = "rgba(595959aa)",
+    shadow = "rgba(1a1a1aee)",
+}
+
+local loaded, matugen_colors = pcall(dofile, os.getenv("HOME") .. "/.config/hypr/matugen-colors.lua")
+if not loaded or type(matugen_colors) ~= "table" then
+    matugen_colors = fallback_colors
+end
+
 hl.config({
     general = {
         gaps_in          = 3,
@@ -6,8 +17,8 @@ hl.config({
         border_size      = 2,
 
         col              = {
-            active_border   = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 },
-            inactive_border = "rgba(595959aa)",
+            active_border   = matugen_colors.active_border,
+            inactive_border = matugen_colors.inactive_border,
         },
 
         -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
@@ -31,7 +42,7 @@ hl.config({
             enabled      = true,
             range        = 4,
             render_power = 3,
-            color        = 0xee1a1a1a,
+            color        = matugen_colors.shadow,
         },
 
         blur             = {
