@@ -13,6 +13,7 @@
 /wofi/.config/wofi/matugen.css
 /hypr/.config/hypr/hyprlock-matugen.conf
 /hypr/.config/hypr/matugen-colors.lua
+/gtk/.config/gtk-3.0/gtk.css
 
 # Local pre-Matugen fallback copies
 /waybar/.config/waybar/*.backup

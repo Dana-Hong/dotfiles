@@ -3,7 +3,7 @@ local programs = {
     browser = "brave",
     -- alt: browser = "zen-browser"
     menu = "~/.config/wofi/launch.sh",
-    file_manager = "dolphin",
+    file_manager = "thunar",
     text_editor = "zeditor",
     screen_lock = "~/.config/hypr/launch-hyprlock.sh",
 }
