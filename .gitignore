@@ -5,3 +5,11 @@
 .env.*
 *.pem
 *.key
+
+# Matugen output (regenerated whenever a wallpaper is selected)
+/waybar/.config/waybar/matugen.css
+/kitty/.config/kitty/colors.conf
+
+# Local pre-Matugen fallback copies
+/waybar/.config/waybar/*.backup
+/kitty/.config/kitty/*.backup
