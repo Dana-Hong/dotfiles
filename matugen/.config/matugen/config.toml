@@ -1,0 +1,11 @@
+[config]
+
+[templates.waybar]
+input_path = "~/.config/matugen/templates/waybar-style.css.tmpl"
+output_path = "~/.config/waybar/matugen.css"
+post_hook = "pkill -SIGUSR2 waybar || true"
+
+[templates.kitty]
+input_path = "~/.config/matugen/templates/kitty-colors.conf.tmpl"
+output_path = "~/.config/kitty/colors.conf"
+post_hook = "pkill -SIGUSR1 kitty || true"
