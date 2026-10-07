@@ -10,11 +10,11 @@
 
 ### ADDING WALLPAPERS
 
-Add wallpapers (.png or .jpg) ~/wallpapers
+Add wallpapers (.png or .jpg) to ~/wallpapers
 
 ### BINDINGS
 
-`Super`--> Win
+`Super`&rarr; Win
 
 #### Programs
 
@@ -26,7 +26,7 @@ Add wallpapers (.png or .jpg) ~/wallpapers
 | `Super + E` | GUI File Manager             |
 | `Super + Y` | Terminal File Manager (yazi) |
 | `Super + R` | App Launcher (wofi)          |
-| `Super + W` | Open the wallpaper picker    |
+| `Super + W` | Wallpaper picker             |
 
 #### General
 
